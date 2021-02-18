@@ -1,6 +1,5 @@
 import React from "react";
 import { Dimensions, TouchableOpacity } from "react-native";
-import { acc } from "react-native-reanimated";
 import styled from "styled-components/native";
 import PropTypes from "prop-types";
 import colors from "../../colors";
