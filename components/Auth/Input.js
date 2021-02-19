@@ -23,8 +23,10 @@ const Input = ({
   placeholder,
   isPassword = false,
   autoCapitalize,
+  keyboardType,
 }) => (
   <Container
+    keyboardType={keyboardType}
     onChangeText={(text) => stateFn(text)}
     value={value}
     placeholder={placeholder}
