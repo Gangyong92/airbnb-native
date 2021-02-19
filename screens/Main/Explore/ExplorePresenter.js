@@ -9,10 +9,10 @@ const Container = styled.View`
 
 const Text = styled.Text``;
 
-const Explore = () => (
+const ExplorePresenter = () => (
   <Container>
     <Text>Explore</Text>
   </Container>
 );
 
-export default Explore;
+export default ExplorePresenter;
