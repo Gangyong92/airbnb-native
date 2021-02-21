@@ -1,5 +1,4 @@
 import axios from "axios";
-import { call } from "react-native-reanimated";
 
 const callApi = async (method, path, data, jwt) => {
   const headers = {
@@ -7,7 +6,7 @@ const callApi = async (method, path, data, jwt) => {
     "Content-Type": "application/json",
   };
   // test시에는  ./ngrok.exe 실행시 발생하는 주소로 baseUrl 변경
-  const baseUrl = "https://6fa9783b169e.ngrok.io/api/v1";
+  const baseUrl = "https://f535e25b7603.ngrok.io/api/v1";
   const fullUrl = `${baseUrl}${path}`;
 
   if (method === "get" || method === "delete") {
@@ -20,5 +19,5 @@ const callApi = async (method, path, data, jwt) => {
 export default {
   createAccount: (form) => callApi("post", "/users/", form),
   login: (form) => callApi("post", "/users/login/", form),
-  rooms: (page) => callApi(`get", "/rooms/?page=${page}`),
+  rooms: (page = 1) => callApi("get", `/rooms/?page=${page}`),
 };

@@ -2,7 +2,6 @@ import React from "react";
 import { Dimensions, TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 import PropTypes from "prop-types";
-import colors from "../../colors";
 
 // 스크린의 길이는 가져옴.
 const { width } = Dimensions.get("screen");
@@ -35,7 +34,7 @@ const Input = ({
   />
 );
 
-Input.protoType = {
+Input.propTypes = {
   value: PropTypes.string,
   placeholder: PropTypes.string,
   isPassword: PropTypes.bool,

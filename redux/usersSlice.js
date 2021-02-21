@@ -29,7 +29,6 @@ export const userLogin = (form) => async (dispatch) => {
     if (id && token) {
       dispatch(logIn({ token }));
     }
-    // dispatch login()
   } catch (e) {
     alert("Wrong user/password");
   }

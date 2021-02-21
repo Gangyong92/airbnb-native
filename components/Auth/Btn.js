@@ -35,7 +35,7 @@ const Btn = ({ loading, onPress, text, accent = false }) => (
   </TouchableOpacity>
 );
 
-Btn.protoType = {
+Btn.propTypes = {
   onPress: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
   accent: PropTypes.bool,
