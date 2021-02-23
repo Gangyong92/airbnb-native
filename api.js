@@ -7,7 +7,7 @@ const callApi = async (method, path, data, jwt) => {
   };
 
   // test시에는  ./ngrok.exe 실행시 발생하는 주소로 baseUrl 변경
-  const baseUrl = "https://2c06b6be5946.ngrok.io/api/v1";
+  const baseUrl = "https://5fb7278126eb.ngrok.io/api/v1";
   const fullUrl = `${baseUrl}${path}`;
 
   if (method === "get" || method === "delete") {

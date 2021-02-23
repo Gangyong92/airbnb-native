@@ -25,17 +25,65 @@ const SearchBar = styled.TextInput`
 const CancelContainer = styled.TouchableOpacity``;
 const CancelText = styled.Text``;
 
+const FiltersContainer = styled.ScrollView`
+  flex-direction: row;
+  margin-top: 10px;
+`;
+const FilterContainer = styled.View`
+  align-items: center;
+  margin-right: 15px;
+`;
+const FilterLabel = styled.Text`
+  text-transform: uppercase;
+  font-size: 12px;
+  margin-bottom: 5px;
+  font-weight: 500;
+`;
+const Filter = styled.TextInput`
+  padding: 10px;
+  background-color: white;
+  border-radius: 20px;
+  elevation: 3;
+  width: 80px;
+`;
+
 const SearchPresenter = () => {
   const navigation = useNavigation();
   return (
     <DismissKeyboard>
       <Container>
         <SearchContainer>
-          <SearchBar autoFocus={true} elevation={4} />
+          <SearchBar
+            autoFocus={true}
+            elevation={4}
+            placeholder="Search by city..."
+          />
           <CancelContainer onPress={() => navigation.goBack()}>
             <CancelText>Cancel</CancelText>
           </CancelContainer>
         </SearchContainer>
+        <FiltersContainer
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{ paddingVertical: 10, paddingHorizontal: 20 }}
+        >
+          <FilterContainer>
+            <FilterLabel>Beds</FilterLabel>
+            <Filter placeholder="0" keyboardType={"number-pad"} />
+          </FilterContainer>
+          <FilterContainer>
+            <FilterLabel>Bedrooms</FilterLabel>
+            <Filter placeholder="0" keyboardType={"number-pad"} />
+          </FilterContainer>
+          <FilterContainer>
+            <FilterLabel>Bathrooms</FilterLabel>
+            <Filter placeholder="0" keyboardType={"number-pad"} />
+          </FilterContainer>
+          <FilterContainer>
+            <FilterLabel>Max. price</FilterLabel>
+            <Filter placeholder="$0" keyboardType={"number-pad"} />
+          </FilterContainer>
+        </FiltersContainer>
       </Container>
     </DismissKeyboard>
   );
