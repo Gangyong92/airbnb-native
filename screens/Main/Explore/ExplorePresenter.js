@@ -1,7 +1,14 @@
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { ActivityIndicator, Text } from "react-native";
-import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
+import {
+  ActivityIndicator,
+  StatusBar,
+  ScrollView,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+} from "react-native";
 import styled from "styled-components/native";
+import colors from "../../../colors";
 import RoomCard from "../../../components/RoomCard";
 
 const Container = styled.View`
@@ -25,16 +32,41 @@ const FakeText = styled.Text`
   font-weight: 300;
 `;
 
+const LoadMore = styled.View`
+  width: 100%;
+  padding: 10px 10px;
+  align-items: center;
+  background-color: ${colors.green};
+  border-radius: 5px;
+  margin-bottom: 30px;
+`;
+
+const LoadMoreText = styled.Text`
+  color: white;
+  font-size: 18px;
+  font-weight: 500;
+`;
+
 const ExplorePresenter = ({ rooms, increasePage }) => {
+  const navigation = useNavigation();
   return (
     <Container>
+      <StatusBar
+        translucent={true}
+        backgroundColor="transparent"
+        barStyle="dark-content"
+      />
       {rooms.length === 0 ? (
         <ActivityIndicator color="black" />
       ) : (
         <>
-          <FakeBar elevation={4}>
-            <FakeText>Search...</FakeText>
-          </FakeBar>
+          <TouchableWithoutFeedback
+            onPress={() => navigation.navigate("search")}
+          >
+            <FakeBar elevation={4}>
+              <FakeText>Search...</FakeText>
+            </FakeBar>
+          </TouchableWithoutFeedback>
           <ScrollView
             showsVerticalScrollIndicator={false}
             style={{ width: "100%" }}
@@ -49,10 +81,13 @@ const ExplorePresenter = ({ rooms, increasePage }) => {
                 id={room.id}
                 isSuperHost={room.user.superhost}
                 isFav={room.is_favs}
+                roomObj={room}
               />
             ))}
             <TouchableOpacity onPress={increasePage}>
-              <Text>Load More</Text>
+              <LoadMore>
+                <LoadMoreText>Load More</LoadMoreText>
+              </LoadMore>
             </TouchableOpacity>
           </ScrollView>
         </>
