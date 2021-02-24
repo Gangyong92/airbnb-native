@@ -5,7 +5,7 @@ import { BlurView } from "expo-blur";
 import { StyleSheet } from "react-native";
 import Explore from "../screens/Main/Explore";
 import Saved from "../screens/Main/Saved";
-import MapScreen from "../screens/Main/Map";
+import Map from "../screens/Main/Map";
 import Profile from "../screens/Main/Profile";
 import colors from "../colors";
 import utils from "../utils";
@@ -53,7 +53,7 @@ const Tabs = () => (
   >
     <TabsNavigator.Screen name="Explore" component={Explore} />
     <TabsNavigator.Screen name="Saved" component={Saved} />
-    <TabsNavigator.Screen name="Map" component={MapScreen} />
+    <TabsNavigator.Screen name="Map" component={Map} />
     <TabsNavigator.Screen name="Profile" component={Profile} />
   </TabsNavigator.Navigator>
 );

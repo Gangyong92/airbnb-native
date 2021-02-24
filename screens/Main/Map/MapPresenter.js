@@ -1,11 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
-import { StyleSheet, Dimensions } from "react-native";
+import React from "react";
+import { Dimensions } from "react-native";
 import MapView, { Marker } from "react-native-maps";
-import { connect } from "react-redux";
 import styled from "styled-components/native";
-import colors from "../../colors";
+import colors from "../../../colors";
 
-const { width, height } = Dimensions.get("screen");
+const { width } = Dimensions.get("screen");
 
 const Container = styled.View`
   flex: 1;
@@ -82,30 +81,7 @@ const RoomMarker = ({ selected, price }) => {
   );
 };
 
-const MapScreen = ({ rooms }) => {
-  const mapRef = useRef();
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const onScroll = (e) => {
-    const {
-      nativeEvent: {
-        contentOffset: { x },
-      },
-    } = e;
-    const position = Math.abs(Math.round(x / width));
-    setCurrentIndex(position);
-  };
-  useEffect(() => {
-    mapRef.current?.animateCamera(
-      {
-        center: {
-          latitude: parseFloat(rooms[currentIndex].lat),
-          longitude: parseFloat(rooms[currentIndex].lng),
-        },
-      },
-      { duration: 3000 }
-    );
-  }, [currentIndex]);
-
+const MapPresenter = ({ currentIndex, rooms, onScroll, mapRef }) => {
   return (
     <Container>
       <MapView
@@ -149,7 +125,7 @@ const MapScreen = ({ rooms }) => {
                 source={
                   room.photos[0]?.file
                     ? { uri: room.photos[0]?.file }
-                    : require("../../assets/default_room_img.jpg")
+                    : require("../../../assets/default_room_img.jpg")
                 }
               />
               <Column>
@@ -164,8 +140,4 @@ const MapScreen = ({ rooms }) => {
   );
 };
 
-function mapStateToProps(state) {
-  return { rooms: state.roomsReducer.explore.rooms };
-}
-
-export default connect(mapStateToProps)(MapScreen);
+export default MapPresenter;
