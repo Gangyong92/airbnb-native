@@ -16,7 +16,8 @@ const MapContainer = ({ rooms }) => {
     const position = Math.abs(Math.round(x / width));
     setCurrentIndex(position);
   };
-  useEffect(() => {
+
+  const moveMap = () => {
     mapRef.current?.animateCamera(
       {
         center: {
@@ -26,6 +27,19 @@ const MapContainer = ({ rooms }) => {
       },
       { duration: 3000 }
     );
+  };
+
+  const onRegionChangeComplete = async () => {
+    try {
+      const { northEast, southWest } = await mapRef.current?.getMapBoundaries();
+      console.log(northEast, southWest);
+    } catch (e) {
+      console.warn(e);
+    }
+  };
+
+  useEffect(() => {
+    moveMap();
   }, [currentIndex]);
 
   return (
@@ -34,6 +48,7 @@ const MapContainer = ({ rooms }) => {
       rooms={rooms}
       onScroll={onScroll}
       mapRef={mapRef}
+      onRegionChangeComplete={onRegionChangeComplete}
     />
   );
 };

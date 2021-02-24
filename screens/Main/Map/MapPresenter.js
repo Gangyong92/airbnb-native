@@ -81,10 +81,17 @@ const RoomMarker = ({ selected, price }) => {
   );
 };
 
-const MapPresenter = ({ currentIndex, rooms, onScroll, mapRef }) => {
+const MapPresenter = ({
+  currentIndex,
+  rooms,
+  onScroll,
+  mapRef,
+  onRegionChangeComplete,
+}) => {
   return (
     <Container>
       <MapView
+        onRegionChangeComplete={onRegionChangeComplete}
         ref={mapRef}
         camera={{
           center: {
